@@ -131,8 +131,15 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground p-4">
       <div className="text-center mb-24">
-        <h1 className="font-playwrite text-4xl md:text-8xl text-yellow tracking-tighter transition-all hover:scale-105 cursor-default drop-shadow-[0_0_20px_rgba(255,199,119,0.9)] drop-shadow-[0_0_40px_rgba(255,199,119,0.4)]">
-          Kaz's Server
+        <h1 className="group flex justify-center font-playwrite text-4xl md:text-8xl text-yellow tracking-tighter transition-all hover:scale-105 cursor-default drop-shadow-[0_0_20px_rgba(255,199,119,0.9)] drop-shadow-[0_0_40px_rgba(255,199,119,0.4)]">
+          Ka
+          <span className="inline-flex transition-all duration-500 overflow-hidden max-w-[1em] group-hover:max-w-0 group-hover:opacity-0">
+            z
+          </span>
+          <span className="inline-flex transition-all duration-500 overflow-hidden max-w-0 opacity-0 group-hover:max-w-[2em] group-hover:opacity-100">
+            sh
+          </span>
+          's Server
         </h1>
       </div>
 
