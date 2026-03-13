@@ -1,22 +1,82 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #222436;
+  --foreground: #c8d3f5;
+  --color-bg-dark: #1e2030;
+  --color-bg-dark1: #191B29;
+  --color-bg-highlight: #2f334d;
+  --color-blue: #82aaff;
+  --color-blue0: #3e68d7;
+  --color-blue1: #65bcff;
+  --color-blue2: #0db9d7;
+  --color-blue5: #89ddff;
+  --color-blue6: #b4f9f8;
+  --color-blue7: #394b70;
+  --color-comment: #636da6;
+  --color-cyan: #86e1fc;
+  --color-dark3: #545c7e;
+  --color-dark5: #737aa2;
+  --color-fg-dark: #828bb8;
+  --color-fg-gutter: #3b4261;
+  --color-green: #c3e88d;
+  --color-green1: #4fd6be;
+  --color-green2: #41a6b5;
+  --color-magenta: #c099ff;
+  --color-magenta2: #ff007c;
+  --color-orange: #ff966c;
+  --color-purple: #fca7ea;
+  --color-red: #ff757f;
+  --color-red1: #c53b53;
+  --color-teal: #4fd6be;
+  --color-terminal-black: #444a73;
+  --color-yellow: #ffc777;
+  
+  --color-git-add: #b8db87;
+  --color-git-change: #7ca1f2;
+  --color-git-delete: #e26a75;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-bg-dark: var(--color-bg-dark);
+  --color-bg-dark1: var(--color-bg-dark1);
+  --color-bg-highlight: var(--color-bg-highlight);
+  --color-blue: var(--color-blue);
+  --color-blue0: var(--color-blue0);
+  --color-blue1: var(--color-blue1);
+  --color-blue2: var(--color-blue2);
+  --color-blue5: var(--color-blue5);
+  --color-blue6: var(--color-blue6);
+  --color-blue7: var(--color-blue7);
+  --color-comment: var(--color-comment);
+  --color-cyan: var(--color-cyan);
+  --color-dark3: var(--color-dark3);
+  --color-dark5: var(--color-dark5);
+  --color-fg-dark: var(--color-fg-dark);
+  --color-fg-gutter: var(--color-fg-gutter);
+  --color-green: var(--color-green);
+  --color-green1: var(--color-green1);
+  --color-green2: var(--color-green2);
+  --color-magenta: var(--color-magenta);
+  --color-magenta2: var(--color-magenta2);
+  --color-orange: var(--color-orange);
+  --color-purple: var(--color-purple);
+  --color-red: var(--color-red);
+  --color-red1: var(--color-red1);
+  --color-teal: var(--color-teal);
+  --color-terminal-black: var(--color-terminal-black);
+  --color-yellow: var(--color-yellow);
+  
+  --color-git-add: var(--color-git-add);
+  --color-git-change: var(--color-git-change);
+  --color-git-delete: var(--color-git-delete);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-playwrite: var(--font-playwrite);
+  --font-jetbrains: var(--font-jetbrains);
 }
 
 body {
