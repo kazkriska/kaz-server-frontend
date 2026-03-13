@@ -144,10 +144,10 @@ export default function Home() {
             className="group flex items-center justify-between py-0.5 transition-all cursor-pointer"
           >
             <div className="flex items-center gap-2.5">
-              <span className="text-blue1 group-hover:opacity-80 scale-75">
+              <span className="text-blue2 group-hover:opacity-80 scale-75">
                 {item.icon}
               </span>
-              <span className="text-xs text-blue1 transition-colors uppercase tracking-widest">
+              <span className="text-xs text-blue2 transition-colors uppercase tracking-widest">
                 {item.label}
               </span>
             </div>
