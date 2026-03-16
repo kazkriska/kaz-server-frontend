@@ -31,6 +31,28 @@ const menuItems = [
     ),
   },
   {
+    label: "my linkedin",
+    key: "l",
+    path: "https://linkedin.com/",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect width="4" height="12" x="2" y="9" />
+        <circle cx="4" cy="4" r="2" />
+      </svg>
+    ),
+  },
+  {
     label: "view my projects",
     key: "p",
     path: "/projects",
@@ -125,7 +147,13 @@ export default function Home() {
 
       const key = e.key.toLowerCase();
       const menuItem = menuItems.find((item) => item.key === key);
-      if (menuItem) router.push(menuItem.path);
+      if (menuItem) {
+        if (menuItem.path.startsWith("http")) {
+          window.open(menuItem.path, "_blank");
+        } else {
+          router.push(menuItem.path);
+        }
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -173,7 +201,13 @@ export default function Home() {
         {menuItems.map((item) => (
           <div
             key={item.key}
-            onClick={() => router.push(item.path)}
+            onClick={() => {
+              if (item.path.startsWith("http")) {
+                window.open(item.path, "_blank");
+              } else {
+                router.push(item.path);
+              }
+            }}
             className="
         group
         flex

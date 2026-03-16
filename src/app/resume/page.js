@@ -1,16 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+
+const ExperienceSection = ({ id, activeId, children }) => {
+  const isActive = activeId === id;
+  return (
+    <div
+      data-section={id}
+      className={`transition-all duration-700 p-8 -mx-8 rounded-2xl border ${
+        isActive
+          ? "bg-bg-highlight/30 border-dark3/30 shadow-xl shadow-blue/5 opacity-100 grayscale-0 scale-[1.02]"
+          : "border-transparent opacity-50 grayscale-[0.3] scale-100"
+      }`}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default function Resume() {
   const router = useRouter();
+  const [activeSection, setActiveSection] = useState(null);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         router.push("/");
+      } else if (e.key.toLowerCase() === "l") {
+        window.open("https://linkedin.com/", "_blank");
       }
     };
 
@@ -18,17 +37,56 @@ export default function Resume() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [router]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
+            setActiveSection(entry.target.getAttribute("data-section"));
+          }
+        });
+      },
+      {
+        threshold: 0.4,
+        rootMargin: "-10% 0px -10% 0px",
+      }
+    );
+
+    document
+      .querySelectorAll("[data-section]")
+      .forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground p-8 md:p-16 font-jetbrains selection:bg-blue5/30">
-      <div
-        onClick={() => router.push("/")}
-        className="fixed top-4 right-4 md:top-8 md:right-8 z-50 bg-background/50 backdrop-blur-md border border-dark3 text-foreground/80 px-3 py-1.5 rounded-md font-jetbrains text-sm cursor-pointer hover:text-yellow hover:border-yellow/50 transition-all flex items-center gap-2 shadow-lg"
-      >
-        Press{" "}
-        <kbd className="bg-dark3/50 border border-dark3 px-1.5 py-0.5 rounded text-[10px] font-sans">
-          Esc
-        </kbd>{" "}
-        to go back
+      {/* Top Left Menu */}
+      <div className="fixed top-4 left-4 md:top-8 md:left-8 z-50">
+        <div
+          onClick={() => window.open("https://linkedin.com/", "_blank")}
+          className="bg-background/50 backdrop-blur-md border border-dark3 text-foreground/80 px-3 py-1.5 rounded-md font-jetbrains text-sm cursor-pointer hover:text-blue hover:border-blue/50 transition-all flex items-center gap-2 shadow-lg w-fit"
+        >
+          Press{" "}
+          <kbd className="bg-dark3/50 border border-dark3 px-1.5 py-0.5 rounded text-[10px] font-sans">
+            L
+          </kbd>{" "}
+          for My LinkedIn
+        </div>
+      </div>
+
+      {/* Top Right Menu */}
+      <div className="fixed top-4 right-4 md:top-8 md:right-8 z-50">
+        <div
+          onClick={() => router.push("/")}
+          className="bg-background/50 backdrop-blur-md border border-dark3 text-foreground/80 px-3 py-1.5 rounded-md font-jetbrains text-sm cursor-pointer hover:text-yellow hover:border-yellow/50 transition-all flex items-center gap-2 shadow-lg w-fit"
+        >
+          Press{" "}
+          <kbd className="bg-dark3/50 border border-dark3 px-1.5 py-0.5 rounded text-[10px] font-sans">
+            Esc
+          </kbd>{" "}
+          to go back
+        </div>
       </div>
       <div className="max-w-3xl mx-auto">
         <div className="mb-12">
@@ -72,8 +130,8 @@ export default function Resume() {
 
         <hr className="border-t border-dark3 my-12" />
 
-        <div className="space-y-12">
-          <div>
+        <div className="space-y-4">
+          <ExperienceSection id="srit" activeId={activeSection}>
             <h3 className="text-2xl text-blue2 font-bold mb-1">
               Customer Success & Operations Manager — Rental Fleet
             </h3>
@@ -149,11 +207,9 @@ export default function Resume() {
                 customer engagement.
               </li>
             </ul>
-          </div>
+          </ExperienceSection>
 
-          <hr className="border-t border-dark3 my-12" />
-
-          <div>
+          <ExperienceSection id="unilodge" activeId={activeSection}>
             <h3 className="text-2xl text-blue2 font-bold mb-1">
               Residential Advisor
             </h3>
@@ -192,11 +248,9 @@ export default function Resume() {
                 initiatives to enhance resident satisfaction and retention.
               </li>
             </ul>
-          </div>
+          </ExperienceSection>
 
-          <hr className="border-t border-dark3 my-12" />
-
-          <div>
+          <ExperienceSection id="consensys" activeId={activeSection}>
             <h3 className="text-2xl text-blue2 font-bold mb-1">
               Technical Support Engineer (NFT)
             </h3>
@@ -266,11 +320,9 @@ export default function Resume() {
                 incidents impacting business operations.
               </li>
             </ul>
-          </div>
+          </ExperienceSection>
 
-          <hr className="border-t border-dark3 my-12" />
-
-          <div>
+          <ExperienceSection id="ankr" activeId={activeSection}>
             <h3 className="text-2xl text-blue2 font-bold mb-1">
               Customer Service Associate
             </h3>
@@ -312,11 +364,9 @@ export default function Resume() {
                 in a fast-paced environment.
               </li>
             </ul>
-          </div>
+          </ExperienceSection>
 
-          <hr className="border-t border-dark3 my-12" />
-
-          <div>
+          <ExperienceSection id="brassmonkey" activeId={activeSection}>
             <h3 className="text-2xl text-blue2 font-bold mb-1">
               Bar Supervisor
             </h3>
@@ -336,7 +386,7 @@ export default function Resume() {
                 Interacted with guests in a professional manner at all times.
               </li>
             </ul>
-          </div>
+          </ExperienceSection>
         </div>
 
         <div className="mt-16 text-center">
