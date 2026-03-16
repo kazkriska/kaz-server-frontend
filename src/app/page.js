@@ -153,9 +153,18 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground p-4">
       <div className="text-center mb-12 flex justify-center">
-        <pre className="group font-mono text-[10px] md:text-[16px] text-yellow tracking-tighter transition-all hover:scale-105 cursor-default drop-shadow-[0_0_20px_rgba(255,199,119,0.9)] drop-shadow-[0_0_40px_rgba(255,199,119,0.4)] leading-none">
-          {ascii}
-        </pre>
+        <img
+          src="/logo.svg"
+          alt="Kaz's Lab"
+          className="
+      w-[600px]
+      max-w-full
+      transition-all
+      hover:scale-105
+      drop-shadow-[0_0_20px_rgba(255,199,119,0.9)]
+      drop-shadow-[0_0_40px_rgba(255,199,119,0.4)]
+    "
+        />{" "}
       </div>
       <nav className="flex flex-col gap-3 w-full max-w-sm font-mono">
         {menuItems.map((item) => (
@@ -189,4 +198,3 @@ export default function Home() {
     </div>
   );
 }
-
