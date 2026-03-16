@@ -29,7 +29,7 @@ export default function Resume() {
       if (e.key === "Escape") {
         router.push("/");
       } else if (e.key.toLowerCase() === "l") {
-        window.open("https://linkedin.com/", "_blank");
+        window.open("https://linkedin.com/in/kashish-kumar99/", "_blank");
       }
     };
 
@@ -49,7 +49,7 @@ export default function Resume() {
       {
         threshold: 0.4,
         rootMargin: "-10% 0px -10% 0px",
-      }
+      },
     );
 
     document
@@ -407,4 +407,3 @@ export default function Resume() {
     </div>
   );
 }
-

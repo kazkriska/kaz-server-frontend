@@ -33,7 +33,7 @@ const menuItems = [
   {
     label: "my linkedin",
     key: "l",
-    path: "https://linkedin.com/",
+    path: "https://www.linkedin.com/in/kashish-kumar99/details/recommendations/",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
