@@ -31,7 +31,7 @@ const menuItems = [
     ),
   },
   {
-    label: "my linkedin",
+    label: "my recommendations",
     key: "l",
     path: "https://www.linkedin.com/in/kashish-kumar99/details/recommendations/",
     icon: (
