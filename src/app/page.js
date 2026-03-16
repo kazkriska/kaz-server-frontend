@@ -1,7 +1,8 @@
 "use client";
-
-import { useEffect } from "react";
+import ansiShadow from "figlet/importable-fonts/ANSI Shadow";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import figlet from "figlet";
 
 const menuItems = [
   {
@@ -115,36 +116,46 @@ const menuItems = [
 
 export default function Home() {
   const router = useRouter();
+  const [ascii, setAscii] = useState("");
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Ignore keypresses if modifier keys are held down (e.g., CMD+R, CTRL+C)
       if (e.ctrlKey || e.metaKey || e.altKey) return;
 
       const key = e.key.toLowerCase();
       const menuItem = menuItems.find((item) => item.key === key);
-      if (menuItem) {
-        router.push(menuItem.path);
-      }
+      if (menuItem) router.push(menuItem.path);
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [router]);
 
+  useEffect(() => {
+    figlet.parseFont("ANSI Shadow", ansiShadow);
+
+    figlet.text("Kaz Labs", { font: "ANSI Shadow" }, (err, data) => {
+      if (!data) return;
+
+      let i = 0;
+
+      const interval = setInterval(() => {
+        setAscii(data.slice(0, i));
+        i++;
+
+        if (i > data.length) clearInterval(interval);
+      }, 3);
+
+      return () => clearInterval(interval);
+    });
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground p-4">
-      <div className="text-center mb-24">
-        <h1 className="group flex justify-center font-playwrite text-4xl md:text-8xl text-yellow tracking-tighter transition-all hover:scale-105 cursor-default drop-shadow-[0_0_20px_rgba(255,199,119,0.9)] drop-shadow-[0_0_40px_rgba(255,199,119,0.4)]">
-          Ka
-          <span className="inline-flex transition-all duration-500 overflow-hidden max-w-[1em] group-hover:max-w-0 group-hover:opacity-0">
-            z
-          </span>
-          <span className="inline-flex transition-all duration-500 overflow-hidden max-w-0 opacity-0 group-hover:max-w-[2em] group-hover:opacity-100">
-            sh
-          </span>
-          &apos;s Server
-        </h1>
+      <div className="text-center mb-24 flex justify-center">
+        <pre className="group font-mono text-[10px] md:text-[16px] text-yellow tracking-tighter transition-all hover:scale-105 cursor-default drop-shadow-[0_0_20px_rgba(255,199,119,0.9)] drop-shadow-[0_0_40px_rgba(255,199,119,0.4)] leading-none">
+          {ascii}
+        </pre>
       </div>
 
       <nav className="flex flex-col gap-4 w-full max-w-md font-jetbrains">
@@ -162,6 +173,7 @@ export default function Home() {
                 {item.label}
               </span>
             </div>
+
             <span className="text-[10px] text-yellow opacity-60 group-hover:opacity-100 transition-opacity ml-4 font-bold">
               [{item.key}]
             </span>
@@ -171,3 +183,4 @@ export default function Home() {
     </div>
   );
 }
+
