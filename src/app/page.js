@@ -152,34 +152,40 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground p-4">
-      <div className="text-center mb-24 flex justify-center">
+      <div className="text-center mb-12 flex justify-center">
         <pre className="group font-mono text-[10px] md:text-[16px] text-yellow tracking-tighter transition-all hover:scale-105 cursor-default drop-shadow-[0_0_20px_rgba(255,199,119,0.9)] drop-shadow-[0_0_40px_rgba(255,199,119,0.4)] leading-none">
           {ascii}
         </pre>
       </div>
-
-      <nav className="flex flex-col gap-4 w-full max-w-md font-jetbrains">
+      <nav className="flex flex-col gap-3 w-full max-w-sm font-mono">
         {menuItems.map((item) => (
           <div
             key={item.key}
             onClick={() => router.push(item.path)}
-            className="group flex items-center justify-between py-0.5 transition-all cursor-pointer"
+            className="
+        group
+        flex
+        items-center
+        justify-between
+        px-2 py-1
+        cursor-pointer
+        transition-all
+        text-sm
+        text-blue2
+        opacity-80
+        hover:opacity-100
+        hover:bg-white/5
+        rounded-sm
+      "
           >
-            <div className="flex items-center gap-2.5">
-              <span className="text-blue2 group-hover:opacity-80 scale-75">
-                {item.icon}
-              </span>
-              <span className="text-xs text-blue2 transition-colors uppercase tracking-widest">
-                {item.label}
-              </span>
-            </div>
+            <span className="tracking-widest uppercase">{item.label}</span>
 
-            <span className="text-[10px] text-yellow opacity-60 group-hover:opacity-100 transition-opacity ml-4 font-bold">
+            <span className="text-yellow font-bold opacity-60 group-hover:opacity-100">
               [{item.key}]
             </span>
           </div>
         ))}
-      </nav>
+      </nav>{" "}
     </div>
   );
 }
