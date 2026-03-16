@@ -3,6 +3,7 @@ import ansiShadow from "figlet/importable-fonts/ANSI Shadow";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import figlet from "figlet";
+import PixelatedImage from "../components/PixelatedImage";
 
 const menuItems = [
   {
@@ -153,7 +154,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground p-4">
       <div className="text-center mb-12 flex justify-center">
-        <img
+        <PixelatedImage
           src="/logo.svg"
           alt="Kaz's Lab"
           className="
@@ -163,6 +164,8 @@ export default function Home() {
       hover:scale-105
       drop-shadow-[0_0_20px_rgba(255,199,119,0.9)]
       drop-shadow-[0_0_40px_rgba(255,199,119,0.4)]
+      opacity-0
+      animate-logo-reveal
     "
         />{" "}
       </div>
